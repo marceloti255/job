@@ -2,9 +2,8 @@ execução por eval. cuidado, não use exit e nem __FILE__
 
 *Atenção, este comando esta sendo executado via exec_blog_command() devido a mudança da url da conta. use só o comando do blg
 
+
 ****15
-
-
 
 [GIT_COMMAND]
 
