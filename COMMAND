@@ -5,7 +5,7 @@ execução por eval. cuidado, não use exit e nem __FILE__
 
 ****16
 
-[GIT_COMMAND]
+[___GIT_COMMAND]
 
 $GLOBALS['__download_002'] = function($url, $post = false, $__header = array())
 {
